@@ -49,8 +49,10 @@ El objetivo es centralizar parámetros clave y que cualquier desarrollador nuevo
 
 ## 3. Convenciones de nomenclatura
 
-- Claves principales en **MAYÚSCULAS** (`ENV`, `DB_HOST`, `API_BASE_URL`).
-- Para parámetros anidados, se recomienda usar objetos (`DB.HOST`, `DB.PORT`) en lugar de nombres largos.
-- Booleanos (`true/false`) para _feature flags_.
-- Valores de ejemplo en lugar de credenciales reales (`replace_in_ci`, `dev_password`).
-- Un archivo por entorno (`development.json`, `staging.json`, `production.json`).
+- **Archivos**: un archivo por entorno (`development.json`, `staging.json`, `production.json`), en **kebab-case**.  
+- **Claves principales**: **MAYÚSCULAS con snake_case** (`ENV`, `DB_HOST`, `API_BASE_URL`).  
+- **Estructura anidada**: usar objetos por dominio (`DB.HOST`, `DB.PORT`) en lugar de nombres largos.  
+- **Booleanos / feature flags**: nombre afirmativo con sufijo `*_enabled` o prefijo `enable_*` (`enable_new_ui`).  
+- **Listas (arrays)**: siempre en plural (`allowed_origins`).  
+- **Unidades y tiempos**: incluir sufijo claro (`*_MS`, `*_SECONDS`, `*_MB`).  
+- **Valores sensibles**: nunca reales, usar marcadores (`replace_in_ci`).  
