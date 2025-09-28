@@ -1,0 +1,15 @@
+{
+  "ENV": "staging",
+  "API_BASE_URL": "https://staging.api.example.com",
+  "DB": {
+    "HOST": "staging.db.internal",
+    "PORT": 5432,
+    "NAME": "app_staging",
+    "USER": "staging_user",
+    "PASSWORD": "replace_in_ci"
+  },
+  "FEATURE_FLAGS": {
+    "new_ui": true,
+    "beta_feature": false
+  }
+}

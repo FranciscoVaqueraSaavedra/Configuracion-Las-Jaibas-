@@ -1,0 +1,15 @@
+{
+  "ENV": "production",
+  "API_BASE_URL": "https://api.example.com",
+  "DB": {
+    "HOST": "prod.db.internal",
+    "PORT": 5432,
+    "NAME": "app_prod",
+    "USER": "prod_user",
+    "PASSWORD": "replace_in_ci"
+  },
+  "FEATURE_FLAGS": {
+    "new_ui": true,
+    "beta_feature": false
+  }
+}

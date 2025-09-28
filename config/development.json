@@ -1,0 +1,15 @@
+{
+  "ENV": "development",
+  "API_BASE_URL": "http://localhost:3000/api",
+  "DB": {
+    "HOST": "localhost",
+    "PORT": 5432,
+    "NAME": "app_dev",
+    "USER": "dev_user",
+    "PASSWORD": "dev_password"
+  },
+  "FEATURE_FLAGS": {
+    "new_ui": true,
+    "beta_feature": true
+  }
+}
