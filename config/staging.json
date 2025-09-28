@@ -10,6 +10,6 @@
   },
   "FEATURE_FLAGS": {
     "new_ui": true,
-    "beta_feature": false
+    "beta_feature": true
   }
 }
