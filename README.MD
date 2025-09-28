@@ -1,30 +1,58 @@
-# Guía para Proponer y Revisar Cambios de Configuración
+# Configuración de la aplicación
 
-## 1. Cómo proponer cambios
+Este directorio contiene los archivos de configuración para los distintos entornos del proyecto (`development`, `staging` y `production`).  
+El objetivo es centralizar parámetros clave y que cualquier desarrollador nuevo entienda rápidamente qué cambia entre entornos.
 
--   Crear una nueva rama con el formato:
+---
 
-        config/<descripcion>
+## 1. Formato elegido y sintaxis
 
--   Realizar los cambios necesarios en dicha rama.
+- **Formato**: **JSON (JavaScript Object Notation)**
+- **Sintaxis**:
+  - Pares clave–valor rodeados por llaves `{ }`.
+  - Las claves y valores de tipo cadena se escriben entre comillas dobles `""`.
+  - No se permiten comentarios en línea.
+  - Arrays se definen con corchetes `[ ]`.
+  - Tipos válidos: `string`, `number`, `boolean`, `array`, `object`, `null`.
 
--   Abrir un **Pull Request** hacia la rama principal del repositorio.
+**Ejemplo mínimo:**
 
-## 2. Quién revisa
+```json
+{
+  "ENV": "development",
+  "API_BASE_URL": "http://localhost:3000/api",
+  "DB_PORT": 5432,
+  "FEATURE_FLAGS": {
+    "new_ui": true
+  }
+}
+```
 
--   Todo Pull Request debe ser revisado por **al menos un compañero
-    distinto** al autor de los cambios.
--   El revisor debe verificar tanto la corrección técnica como la
-    claridad de la propuesta.
+## 2. Descripción de cada parámetro
 
-## 3. Comprobaciones automáticas mínimas
+## 2. Descripción de cada parámetro
 
-Antes de poder aprobar un Pull Request, deben cumplirse al menos las
-siguientes validaciones automáticas: - **Validación de sintaxis JSON**
-con un linter. - **Validación de sintaxis YAML** con un linter. -
-(Opcional) Ejecución de pruebas adicionales definidas en el proyecto.
+| **Parámetro**   | **Tipo** | **Descripción**                                                              |
+| --------------- | -------- | ---------------------------------------------------------------------------- |
+| `ENV`           | string   | Identifica el entorno de ejecución (`development`, `staging`, `production`). |
+| `API_BASE_URL`  | string   | URL base para las peticiones de la API.                                      |
+| `DB.HOST`       | string   | Dirección del servidor de base de datos.                                     |
+| `DB.PORT`       | number   | Puerto de conexión a la base de datos.                                       |
+| `DB.NAME`       | string   | Nombre de la base de datos a utilizar.                                       |
+| `DB.USER`       | string   | Usuario de la base de datos _(ejemplo, no real)_.                            |
+| `DB.PASSWORD`   | string   | Contraseña de la base de datos _(ejemplo, nunca subir secretos reales)_.     |
+| `FEATURE_FLAGS` | object   | Conjunto de llaves booleanas para activar/desactivar funcionalidades.        |
+| `new_ui`        | boolean  | Habilita la interfaz de usuario nueva.                                       |
+| `beta_feature`  | boolean  | Activa una funcionalidad experimental en prueba.                             |
 
-------------------------------------------------------------------------
+---
 
-✅ Con este flujo se garantiza calidad y consistencia en la
-configuración del repositorio.
+## 3. Convenciones de nomenclatura
+
+- **Archivos**: un archivo por entorno (`development.json`, `staging.json`, `production.json`), en **kebab-case**.  
+- **Claves principales**: **MAYÚSCULAS con snake_case** (`ENV`, `DB_HOST`, `API_BASE_URL`).  
+- **Estructura anidada**: usar objetos por dominio (`DB.HOST`, `DB.PORT`) en lugar de nombres largos.  
+- **Booleanos / feature flags**: nombre afirmativo con sufijo `*_enabled` o prefijo `enable_*` (`enable_new_ui`).  
+- **Listas (arrays)**: siempre en plural (`allowed_origins`).  
+- **Unidades y tiempos**: incluir sufijo claro (`*_MS`, `*_SECONDS`, `*_MB`).  
+- **Valores sensibles**: nunca reales, usar marcadores (`replace_in_ci`).  
