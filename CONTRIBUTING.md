@@ -39,3 +39,10 @@ Sigue estas reglas para mantener consistencia y evitar errores.
 - Nunca subir **secretos reales** (contraseñas, API keys).  
 - Documenta cualquier parámetro nuevo en `README.md`.  
 - Mantén los nombres y unidades consistentes entre entornos.
+
+
+## 5. Protección de Rama
+
+- Requerir revisión de Pull Request antes de realizar una fusión.
+- Asegúrarse que las validaciones automáticas (linters, pruebas) deben completarse con éxito.
+- No autorizar que se realicen pushes directos, por lo que se debe impedir que alguien (incluyendo los adminss) envíe cambios directamente a la branch main sin un PR. 
